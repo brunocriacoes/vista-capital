@@ -47,6 +47,7 @@ body, img {
 .sos-data {
     display: block;
     font-size: 10px;
+    margin-bottom: 15px;
 }
 .sos-legenda {
     font-size: 9px !important;
