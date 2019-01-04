@@ -1,7 +1,7 @@
 
 const domain   = window.location.hostname;
 const http     = window.location.protocol;
-const uri_svg  = `${http}//${domain}/disc/csv/`;
+const uri_svg  = `${http}//${domain}/vista-capital/disc/csv/`;
 const log      = console.log;
 const table    = console.table;
 const query    = x => document.querySelector( x );
