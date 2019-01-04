@@ -73,73 +73,8 @@
                             <span class="sos-lang-en">NAV 12M ($)</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            VISTA MULTIESTRATEGIA FIM
-                            <span class="sos-cdi">CDI</span>
-                        </td>
-                        <td>280.965.146</td>
-                        <td>
-                            -0.866
-                            <span class="sos-cdi">360.062</span>
-                        </td>
-                        <td>
-                            0.443
-                            <span class="sos-cdi">38.802</span>
-                        </td>
-                        <td>
-                            38.802
-                            <span class="sos-cdi">600.767</span>
-                        </td>
-                        <td>
-                            38.764
-                            <span class="sos-cdi">278.153</span>
-                        </td>
-                        <td>
-                            48.935
-                            <span class="sos-cdi">321.922</span>
-                        </td>
-                        <td>
-                            109.768
-                        </td>
-                        <td>180.965</td>
-                        <td>177065236.08</td>
-                        <td>117732329.6</td> 
-                    </tr>
-                    <tr>
-                        <td>
-                            VISTA HEDGE FIM
-                            <span class="sos-cdi">CDI</span>
-                        </td>
-                        <td>1.09458964</td>
-                        <td>
-                            -0.287
-                            <span class="sos-cdi">-1,166.060</span>
-                        </td>
-                        <td>
-                            0.222
-                            <span class="sos-cdi">180.490</span>
-                        </td>
-                        <td>
-                            9.459
-                            <span class="sos-cdi">9.459</span>
-                        </td>
-                        <td>
-                            0.000
-                            <span class="sos-cdi">0.000</span>
-                        </td>
-                        <td>
-                            0.000
-                            <span class="sos-cdi">0.000</span>
-                        </td>
-                        <td>
-                            0.000
-                            <span class="sos-cdi">0.000</span>
-                        </td>
-                        <td>9.459</td>
-                        <td>46237865.11</td>
-                        <td>45047401.6</td>
-                    </tr>
+                    <tr id="sos-vmf"></tr>
+                    <tr id="sos-vhf"></tr>
                     <tr class="sos-tr-title">
                         <td class="sos-left">
                             <span class="sos-lang-pt">Fundos de Renda Variáveis</span>
@@ -186,19 +121,7 @@
                             <span class="sos-lang-en">NAV 12M ($)</span>
                         </td>
                     </tr>
-                    <tr>
-                        <td> VISTA FIA</td>
-                        <td>2.45899485</td>
-                        <td>-0.499</td>
-                        <td>-1.286</td>
-                        <td>22.364</td>
-                        <td>26.332</td>
-                        <td>58.090</td>
-                        <td>133.836</td>
-                        <td>145.899</td>
-                        <td>77239986.42</td>
-                        <td>61247499.1</td>
-                    </tr>
+                    <tr id="sos-vf"></tr>
                     <tr class="sos-tr-title">
                         <td class="sos-left">
                             <span class="sos-lang-pt">Indexadores</span>
@@ -233,32 +156,8 @@
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>IBX</td>
-                        <td></td>
-                        <td>-0.809</td>
-                        <td>-1.358</td>
-                        <td>15.340</td>
-                        <td>21.765</td>
-                        <td>44.829</td>
-                        <td>92.651</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>CDI</td>
-                        <td></td>
-                        <td>0.025</td>
-                        <td>0.123</td>
-                        <td>6.031</td>
-                        <td>6.452</td>
-                        <td>17.593</td>
-                        <td>34.098</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    <tr id="sos-ibx"></tr>
+                    <tr id="sos-cdi"></tr>
                 </tbody>
                 <tfoot>
                     <tr>
@@ -280,7 +179,7 @@
                             <span class="sos-total">
                                 <span class="sos-total-title sos-lang-pt">PL TOTAL (R$)</span>
                                 <span class="sos-total-title sos-lang-en">NAV TOTAL ($)</span>
-                                <span class="sos-total-valor">306.211.685,20</span>                                  
+                                <span class="sos-total-valor" id="sos-total-valor"></span>                                  
                             </span> 
                         </td>
                     </tr>
@@ -289,6 +188,6 @@
         </div>
     </main>
     <script src="./disc/js/functions.js"></script>
-    <script src="./disc/js/main.js"></script>
+    <script src="./disc/js/main.js" async></script>
 </body>
 </html>
