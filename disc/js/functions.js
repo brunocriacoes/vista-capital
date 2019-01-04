@@ -2,6 +2,7 @@
 const domain   = window.location.hostname;
 const http     = window.location.protocol;
 const uri_svg  = `${http}//${domain}/vista-capital/disc/csv/`;
+// const uri_svg  = `${http}//${domain}/disc/csv/`;
 const log      = console.log;
 const table    = console.table;
 const query    = x => document.querySelector( x );
@@ -29,6 +30,13 @@ function round( number )
     }
     return number;
 }
+function round_total( number )
+{
+    if( number != '' && number != "N/D" ) {
+        return number.replace( ',', "." ).split('.')[0] + "%";
+    }
+    return number;
+}
 function formate( number )
 {
     return number.toLocaleString('pt-br',{minimumFractionDigits: 1}).split(',')[0];
@@ -48,9 +56,9 @@ function get_csv( name_file ) {
     fetch( `${uri_svg}${name_file}` )
     .then( x => x.text() )
     .then( x => {
-        x = x.replace( /0.000/ig, 'N/D' );
+        x = x.replace( /0.000/ig, '' );
         let csv = x.split("\n").map( x => x.split(';') ).filter( x => x[2] || '' != '' );
-        
+
         csv[1][9] = csv[1][9].replace( '.', '' ); 
         csv[3][9] = csv[3][9].replace( '.', '' ); 
         csv[5][9] = csv[5][9].replace( '.', '' ); 
@@ -73,18 +81,24 @@ function get_csv( name_file ) {
         csv[5][10] = formate( +csv[5][10] );
         csv[7][10] = formate( +csv[7][10] );
 
-        csv[1][1] = csv[1][1].replace('.', ',');
-        csv[3][1] = csv[3][1].replace('.', ',');
-        csv[5][1] = csv[5][1].replace('.', ',');
-        csv[7][1] = csv[7][1].replace('.', ',');
+        csv[1][1] = csv[1][1].replace('.', '');
+        csv[3][1] = csv[3][1].replace('.', '');
+        csv[5][1] = csv[5][1].replace('.', '');
+        csv[7][1] = csv[7][1].replace('.', '');
+
+        csv[1][1] = formate( +csv[1][1] );
+        csv[3][1] = formate( +csv[3][1] );
+        csv[5][1] = formate( +csv[5][1] );
+        csv[7][1] = formate( +csv[7][1] );
 
         for( let i = 2; i < 9; i++) {
             let pula = i;
             csv[1][pula]  = round( csv[1][pula] );
-            csv[2][pula]  = round( csv[2][pula] );
+            csv[2][pula]  = round_total( csv[2][pula] );
             csv[3][pula]  = round( csv[3][pula] );
-            csv[4][pula]  = round( csv[4][pula] );
+            csv[4][pula]  = round_total( csv[4][pula] );
             csv[5][pula]  = round( csv[5][pula] );
+            csv[6][pula]  = round_total( csv[6][pula] );
             csv[10][pula] = round( csv[10][pula] );
             csv[11][pula] = round( csv[11][pula] );
         }        
