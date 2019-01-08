@@ -26,7 +26,7 @@ function round( number )
         if( tres < 5 ) {
             redondo = dois;
         }
-        return `${bom[0]}.${bom[1].substr(0, 1)}${redondo}%`;
+        return `${bom[0]},${bom[1].substr(0, 1)}${redondo}%`;
         // return `${bom[0]}.${bom[1].substr(0, 1)}${redondo}%`;
     }
     return number;
@@ -47,6 +47,15 @@ function nd( arr ) {
     return arr.map( x => {
         if( x == "0.000" ){
             return "N/D";
+        } else {
+            return x;
+        }
+    } );
+}
+function remover_porcent( arr ) {
+    return arr.map( x => {
+        if( x == "0%" ){
+            return "";
         } else {
             return x;
         }
@@ -92,10 +101,10 @@ function get_csv( name_file ) {
         csv[5][10] = formate( +csv[5][10] );
         csv[7][10] = formate( +csv[7][10] );
 
-        csv[1][1] = csv[1][1].replace('.', ',').substr(0, 4);
-        csv[3][1] = csv[3][1].replace('.', ',').substr(0, 4);
-        csv[5][1] = csv[5][1].replace('.', ',').substr(0, 4);
-        csv[7][1] = csv[7][1].replace('.', ',').substr(0, 4);
+        csv[1][1] = csv[1][1].replace('.', ',');
+        csv[3][1] = csv[3][1].replace('.', ',');
+        csv[5][1] = csv[5][1].replace('.', ',');
+        csv[7][1] = csv[7][1].replace('.', ',');
 
         csv[1] = nd( csv[1] );
         csv[3] = nd( csv[3] );
@@ -117,7 +126,16 @@ function get_csv( name_file ) {
             csv[6][pula]  = round_total( csv[6][pula] );
             csv[10][pula] = round( csv[10][pula] );
             csv[11][pula] = round( csv[11][pula] );
-        }        
+        }
+
+        csv[1]  = remover_porcent( csv[1] );
+        csv[2]  = remover_porcent( csv[2] );
+        csv[3]  = remover_porcent( csv[3] );
+        csv[4]  = remover_porcent( csv[4] );
+        csv[5]  = remover_porcent( csv[5] );
+        csv[6]  = remover_porcent( csv[6] );
+        csv[10] = remover_porcent( csv[10] );
+        csv[11] = remover_porcent( csv[11] );       
         
         csv.push( [ formate( total ) ] );
 
@@ -164,7 +182,7 @@ function get_csv( name_file ) {
 
         draw_linha( '#sos-vmf', csv[1], csv[2] );
         draw_linha( '#sos-vhf', csv[3], csv[4] );
-        draw_linha( '#sos-vf',  csv[5], csv[6] );
+        draw_linha( '#sos-vf',  csv[5], [] );
         draw_linha( '#sos-ibx', csv[10], [] );
         draw_linha( '#sos-cdi', csv[11], [] );
         document.querySelector('#sos-total-valor').innerHTML = csv[12][0] || '';
