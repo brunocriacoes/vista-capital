@@ -40,8 +40,8 @@ function round_total( number )
 }
 function formate( number )
 {
-    return number.toLocaleString('pt-br',{minimumFractionDigits: 1});
-    // return number.toLocaleString('pt-br',{minimumFractionDigits: 1}).split(',')[0];
+    // return number.toLocaleString('pt-br',{minimumFractionDigits: 1});
+    return number.toLocaleString('pt-br',{minimumFractionDigits: 1}).split(',')[0];
 }
 function nd( arr ) {
     return arr.map( x => {
@@ -92,10 +92,10 @@ function get_csv( name_file ) {
         csv[5][10] = formate( +csv[5][10] );
         csv[7][10] = formate( +csv[7][10] );
 
-        // csv[1][1] = csv[1][1].replace('.', ',');
-        // csv[3][1] = csv[3][1].replace('.', ',');
-        // csv[5][1] = csv[5][1].replace('.', ',');
-        // csv[7][1] = csv[7][1].replace('.', ',');
+        csv[1][1] = csv[1][1].replace('.', ',').substr(0, 4);
+        csv[3][1] = csv[3][1].replace('.', ',').substr(0, 4);
+        csv[5][1] = csv[5][1].replace('.', ',').substr(0, 4);
+        csv[7][1] = csv[7][1].replace('.', ',').substr(0, 4);
 
         csv[1] = nd( csv[1] );
         csv[3] = nd( csv[3] );
