@@ -1,8 +1,8 @@
 
 const domain   = window.location.hostname;
 const http     = window.location.protocol;
-const uri_svg  = `${http}//${domain}/vista-capital/disc/csv/`;
 // const uri_svg  = `${http}//${domain}/disc/csv/`;
+const uri_svg  = `${http}//${domain}/vista-capital/disc/csv/`;
 const log      = console.log;
 const table    = console.table;
 const query    = x => document.querySelector( x );
@@ -27,6 +27,7 @@ function round( number )
             redondo = dois;
         }
         return `${bom[0]}.${bom[1].substr(0, 1)}${redondo}%`;
+        // return `${bom[0]}.${bom[1].substr(0, 1)}${redondo}%`;
     }
     return number;
 }
@@ -39,7 +40,17 @@ function round_total( number )
 }
 function formate( number )
 {
-    return number.toLocaleString('pt-br',{minimumFractionDigits: 1}).split(',')[0];
+    return number.toLocaleString('pt-br',{minimumFractionDigits: 1});
+    // return number.toLocaleString('pt-br',{minimumFractionDigits: 1}).split(',')[0];
+}
+function nd( arr ) {
+    return arr.map( x => {
+        if( x == "0.000" ){
+            return "N/D";
+        } else {
+            return x;
+        }
+    } );
 }
 function draw_linha( id, arr, cdi_array ) {
     let html =  '';
@@ -56,7 +67,7 @@ function get_csv( name_file ) {
     fetch( `${uri_svg}${name_file}` )
     .then( x => x.text() )
     .then( x => {
-        x = x.replace( /0.000/ig, '' );
+        // x = x.replace( /0.000/ig, '' );
         let csv = x.split("\n").map( x => x.split(';') ).filter( x => x[2] || '' != '' );
 
         csv[1][9] = csv[1][9].replace( '.', '' ); 
@@ -81,15 +92,20 @@ function get_csv( name_file ) {
         csv[5][10] = formate( +csv[5][10] );
         csv[7][10] = formate( +csv[7][10] );
 
-        csv[1][1] = csv[1][1].replace('.', '');
-        csv[3][1] = csv[3][1].replace('.', '');
-        csv[5][1] = csv[5][1].replace('.', '');
-        csv[7][1] = csv[7][1].replace('.', '');
+        // csv[1][1] = csv[1][1].replace('.', ',');
+        // csv[3][1] = csv[3][1].replace('.', ',');
+        // csv[5][1] = csv[5][1].replace('.', ',');
+        // csv[7][1] = csv[7][1].replace('.', ',');
 
-        csv[1][1] = formate( +csv[1][1] );
-        csv[3][1] = formate( +csv[3][1] );
-        csv[5][1] = formate( +csv[5][1] );
-        csv[7][1] = formate( +csv[7][1] );
+        csv[1] = nd( csv[1] );
+        csv[3] = nd( csv[3] );
+        csv[5] = nd( csv[5] );
+        csv[7] = nd( csv[7] );
+
+        // csv[1][1] = formate( +csv[1][1] );
+        // csv[3][1] = formate( +csv[3][1] );
+        // csv[5][1] = formate( +csv[5][1] );
+        // csv[7][1] = formate( +csv[7][1] );
 
         for( let i = 2; i < 9; i++) {
             let pula = i;
@@ -106,6 +122,45 @@ function get_csv( name_file ) {
         csv.push( [ formate( total ) ] );
 
         table( csv );
+
+        let dia = csv[0][1].substr( 5,2 );
+        let mes = csv[0][1].substr( 8,2 );
+
+        let mes_en = {
+            "1" : "Jan",
+            "2" : "Feb",
+            "3" : "Mar",
+            "4" : "Apr",
+            "5" : "May",
+            "6" : "June",
+            "7" : "July",
+            "8" : "Aug",
+            "9" : "Sept",
+            "10" : "Oct",
+            "11" : "Nov",
+            "12" : "Dec",
+        };
+
+        let mes_pt = {
+            "1" : "Jan",
+            "2" : "Fev",
+            "3" : "Mar",
+            "4" : "Abr",
+            "5" : "Maio",
+            "6" : "Jun",
+            "7" : "jul",
+            "8" : "Ago",
+            "9" : "Set",
+            "10" : "Out",
+            "11" : "Nov",
+            "12" : "Dez",
+        };
+
+        query('#sos-dia-pt').innerHTML = dia;
+        query('#sos-dia-en').innerHTML = dia;
+
+        query('#sos-mes-pt').innerHTML = mes_pt[mes];
+        query('#sos-mes-en').innerHTML = mes_en[mes];
 
         draw_linha( '#sos-vmf', csv[1], csv[2] );
         draw_linha( '#sos-vhf', csv[3], csv[4] );
