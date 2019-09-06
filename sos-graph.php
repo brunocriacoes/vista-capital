@@ -62,6 +62,10 @@
   {
     include __DIR__ . '/tabela-3.php';
   }
+  function sos_table_table_4( )
+  {
+    include __DIR__ . '/tabela-4.php';
+  }
 
   function sos_multi( $atts ) 
   {
@@ -82,6 +86,7 @@
     grafico( __DIR__ .  '/../../uploads/graficos/vh.csv', $atts ); 
   }
 
+  add_shortcode( 'sos-table-4', 'sos_table_table_4' );
   add_shortcode( 'sos-table-3', 'sos_table_table_3' );
   add_shortcode( 'sos-table-2', 'sos_table_table_2' );
   add_shortcode( 'sos-table', 'sos_table_table' );

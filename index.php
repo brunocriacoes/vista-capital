@@ -21,6 +21,12 @@
     file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
   endif;
 
+  if ( ! empty ( $_FILES['quotas-4']['tmp_name'] ) ) :
+    copy( $_FILES['quotas-4']['tmp_name'], '../wp-content/uploads/graficos/quotes-4.csv' );
+    $update->table_4 = date ( 'd/m/Y' );
+    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
+  endif;
+
   if ( ! empty ( $_FILES['quotas-3']['tmp_name'] ) ) :
     copy( $_FILES['quotas-3']['tmp_name'], '../wp-content/uploads/graficos/quotas-3.csv' );
     $update->table_3 = date ( 'd/m/Y' );
@@ -81,14 +87,19 @@
       <br>
     </div>
 
-    <div class="card">
+    <!-- <div class="card">
       <label for="quotas-2" class="button">Upload</label>
       Quotas: [sos-table-2] <strong> <?= $update->table_2 ?></strong>
-    </div>
+    </div> -->
 		
     <div class="card">
       <label for="quotas-3" class="button">Upload</label>
       Quotas: [sos-table-3] <strong> <?= $update->table_3 ?></strong>
+    </div>
+		
+    <div class="card">
+      <label for="quotas-4" class="button">Upload</label>
+      Quotas: [sos-table-4] <strong> <?= $update->table_3 ?> (em homologação)</strong>
     </div>
 		
 
@@ -112,6 +123,7 @@
       VISTA HEDGE: [sos-vh] <strong> <?= $update->ls ?></strong>
     </div>
 
+    <input type="file" name="quotas-4" id="quotas-4"  style="display:none"/>
     <input type="file" name="quotas-3" id="quotas-3"  style="display:none"/>
     <input type="file" name="quotas-2" id="quotas-2"  style="display:none"/>
     <input type="file" name="quotas" id="quotas"  style="display:none"/>
