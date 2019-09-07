@@ -1,6 +1,6 @@
 <?php
 
-    function translate( $termo )
+    function _t( $termo )
     {
         $lang = $_REQUEST['lang'] ?? '';
 

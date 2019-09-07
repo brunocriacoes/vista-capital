@@ -1,0 +1,60 @@
+.alerta_sisten {
+    width: 96%;
+    display: none;
+    margin-top: 24px;
+    background: #FFF;
+    padding: 12px;
+    box-shadow: 0 0 7px 1px rgba(0, 0, 0, .1);
+    border-left: 4px solid #C00;
+    color: #C00;
+}
+.apresentacao {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+.homologados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.pareado {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 15px;
+}
+.card_box {
+    background: #FFF;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 0 7px 1px rgba(0, 0, 0, .1);
+}
+.card_box strong {
+    font-size: 18px;
+}
+.btn_sisten {
+    display: inline-flex;
+    padding: 10px 15px;
+    align-items: center;
+    background: #05f;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 12px !important;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0, .1);
+    border: 2px solid #05f;
+}
+.btn_sisten:hover {
+    filter: saturate(1.5);
+}
+.btn_sisten_omo {
+    background: #EEE;
+    color: #05f;
+    border: 2px solid #05f;
+}
+.btn_sisten_save {
+    margin-top: 20px;
+    font-size: 18px;
+    background-color: #070;
+    border: 2px solid #070;
+}

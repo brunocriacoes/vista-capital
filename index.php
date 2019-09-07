@@ -1,139 +1,228 @@
-<?php
-  $updateJson = '
-    {
-      "table" : "18/09/1987",
-      "ls" : "18/09/1987",
-      "fia" : "18/09/1987",
-      "multi" : "18/09/1987"
-    }
-  ';
-  if ( ! file_exists ( '../wp-content/uploads/' ) ) mkdir('../wp-content/uploads/');
-  if ( ! file_exists ( '../wp-content/uploads/graficos/' ) ) mkdir('../wp-content/uploads/graficos/');
-  if ( ! file_exists ( '../wp-content/uploads/graficos/update.json' ) ) file_put_contents ( '../wp-content/uploads/graficos/update.json', $updateJson );
-  
-  $update = file_get_contents ( '../wp-content/uploads/graficos/update.json' );
-  $update = json_decode ( $update );
-
-
-  if ( ! empty ( $_FILES['quotas']['tmp_name'] ) ) :
-    copy( $_FILES['quotas']['tmp_name'], '../wp-content/uploads/graficos/quotas.csv' );
-    $update->table = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-
-  if ( ! empty ( $_FILES['quotas-4']['tmp_name'] ) ) :
-    copy( $_FILES['quotas-4']['tmp_name'], '../wp-content/uploads/graficos/quotes-4.csv' );
-    $update->table_4 = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-
-  if ( ! empty ( $_FILES['quotas-3']['tmp_name'] ) ) :
-    copy( $_FILES['quotas-3']['tmp_name'], '../wp-content/uploads/graficos/quotas-3.csv' );
-    $update->table_3 = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-
-  if ( ! empty ( $_FILES['quotas-2']['tmp_name'] ) ) :
-    copy( $_FILES['quotas-2']['tmp_name'], '../wp-content/uploads/graficos/quotas-2.csv' );
-    $update->table_2 = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-  
-  if ( ! empty ( $_FILES['fim']['tmp_name'] ) ) :
-    copy( $_FILES['fim']['tmp_name'], '../wp-content/uploads/graficos/fim.csv' );
-    $update->multi = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-  
-  if ( ! empty ( $_FILES['fia']['tmp_name'] ) ) :
-    copy( $_FILES['fia']['tmp_name'], '../wp-content/uploads/graficos/fia.csv' );
-    $update->fia = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-  
-  if ( ! empty ( $_FILES['ls']['tmp_name'] ) ) :
-    copy( $_FILES['ls']['tmp_name'], '../wp-content/uploads/graficos/ls.csv' );
-    $update->ls = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-
-  if ( ! empty ( $_FILES['vh']['tmp_name'] ) ) :
-    copy( $_FILES['vh']['tmp_name'], '../wp-content/uploads/graficos/vh.csv' );
-    $update->vh = date ( 'd/m/Y' );
-    file_put_contents ( '../wp-content/uploads/graficos/update.json', json_encode ( $update ) );
-  endif;
-
-
-  
-
+<?php 
+    // include __DIR__ . "/core/bootstrap.php";
+    echo "<style>";
+    include __DIR__ . "/src/css/style.css";
+    echo "</style>";
+    $show = ! empty( $_REQUEST['sos-save'] ) ? 'block' : 'none';
 ?>
+
 <div class="warp">
-  <h1>Relatorios</h1>
-  <form action="" method="post" enctype="multipart/form-data">
 
-    <div class="card">
-      <br>
-      <strong>Informações importantes</strong>
-      <br>
-      <br>
-      O uploads de arquivo para gerar os gráficos de Relatorios,
-      tem que ser necessariamente no formato (<b>*.csv</b>), no
-      arquivo de conter somente as linhas com os dados.
-      <br>
-      <br>
-      para usar o gráfico basta colocar o <b>short code</b> onde você
-      deseja que aparece o grafico.
-      <br>
-      <br>
+    <div class="alerta_sisten" style="display: <?= $show ?> ">
+        <span class="dashicons dashicons-warning"></span>
+        Salvo com sucesso.
     </div>
 
-    <!-- <div class="card">
-      <label for="quotas-2" class="button">Upload</label>
-      Quotas: [sos-table-2] <strong> <?= $update->table_2 ?></strong>
-    </div> -->
-		
-    <div class="card">
-      <label for="quotas-3" class="button">Upload</label>
-      Quotas: [sos-table-3] <strong> <?= $update->table_3 ?></strong>
-    </div>
-		
-    <div class="card">
-      <label for="quotas-4" class="button">Upload</label>
-      Quotas: [sos-table-4] <strong> <?= $update->table_3 ?> (em homologação)</strong>
-    </div>
-		
-
-    <div class="card">
-      <label for="fim" class="button">Upload</label>
-      Vista Multiestrategia FIM: [sos-mult] <strong> <?= $update->multi ?></strong>
+    <div class="card_box" >
+        <?php var_dump( $GLOBALS['error'] ) ?>
     </div>
 
-    <div class="card">
-      <label for="fia" class="button">Upload</label>
-      Vista FIA: [sos-fia] <strong> <?= $update->fia ?></strong>
+    <h1>Relatorios</h1>
+
+    <p>
+        <strong>Informações importantes</strong>
+        O uploads de arquivo para gerar os  Relatorios,
+        devem ser necessariamente no formato (<b>*.csv</b>)    
+    </p>
+
+    <h1>Tabela</h1>
+
+    <div class="homologados">
+
+        <div class="card_box">
+            <strong>Tabela inicio</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode 
+                <b> [sos-tabela] </b> ou em homologação 
+                <b> [homo-sos-tabela] </b>
+            </p>
+            <div class="pareado">
+                <label for="sos-tabela" class="btn_sisten">
+                    <span class="dashicons dashicons-upload"></span>
+                    PRODUÇÃO                   
+                </label>
+                <label for="homo-sos-tabela" class="btn_sisten btn_sisten_omo">
+                    <span class="dashicons dashicons-upload"></span>
+                    HOMOLOGAÇÃO
+                </label>
+            </div>
+        </div>
+    
     </div>
 
-    <div class="card">
-      <label for="ls" class="button">Upload</label>
-      Vista LS FIM: [sos-ls] <strong> <?= $update->ls ?></strong>
+    <h1>Botão Apresentação</h1>
+
+    <div class="apresentacao">
+
+        <div class="card_box">
+            <strong>VISTA FIA</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode <br>
+                <b> [baixar-fia] </b>
+            </p>
+            <label for="baixar-fia" class="btn_sisten">
+                <span class="dashicons dashicons-upload"></span>
+                UPLOAD
+            </label>
+        </div>
+        
+        <div class="card_box">
+            <strong>VISTA MULTIESTRATÉGIA FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode <br>
+                <b> [baixar-multi] </b>
+            </p>
+            <label for="baixar-multi" class="btn_sisten">
+                <span class="dashicons dashicons-upload"></span>
+                UPLOAD
+            </label>
+        </div>
+
+        <div class="card_box">
+            <strong>VISTA HEDGE FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode <br>
+                <b> [baixar-hedge] </b>
+            </p>
+            <label for="baixar-hedge" class="btn_sisten">
+                <span class="dashicons dashicons-upload"></span>
+                UPLOAD
+            </label>
+        </div>
+
+        <div class="card_box">
+            <strong>BRAZIL OPPORTUNITIES FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode <br>
+                <b> [baixar-brasil] </b>
+            </p>
+            <label for="baixar-brasil" class="btn_sisten">
+                <span class="dashicons dashicons-upload"></span>
+                UPLOAD
+            </label>
+        </div>
+
     </div>
 
-    <div class="card">
-      <label for="vh" class="button">Upload</label>
-      VISTA HEDGE: [sos-vh] <strong> <?= $update->ls ?></strong>
+    <h1>Gráficos</h1>
+
+    <div class="homologados">
+
+        <div class="card_box">
+            <strong>VISTA FIA</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode 
+                <b> [sos-fia] </b> ou em homologação 
+                <b> [homo-sos-fia] </b>
+            </p>
+            <div class="pareado">
+                <label for="sos-fia" class="btn_sisten">
+                    <span class="dashicons dashicons-upload"></span>
+                    PRODUÇÃO                   
+                </label>
+                <label for="homo-sos-fia" class="btn_sisten btn_sisten_omo">
+                    <span class="dashicons dashicons-upload"></span>
+                    HOMOLOGAÇÃO
+                </label>
+            </div>
+        </div>
+        
+        <div class="card_box">
+            <strong>VISTA MULTIESTRATÉGIA FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode 
+                <b> [sos-ls] </b> ou em homologação 
+                <b> [homo-sos-ls] </b>
+            </p>
+            <div class="pareado">
+                <label for="sos-ls" class="btn_sisten">
+                    <span class="dashicons dashicons-upload"></span>
+                    PRODUÇÃO                   
+                </label>
+                <label for="homo-sos-ls" class="btn_sisten btn_sisten_omo">
+                    <span class="dashicons dashicons-upload"></span>
+                    HOMOLOGAÇÃO
+                </label>
+            </div>
+        </div>
+
+        <div class="card_box">
+            <strong>VISTA HEDGE FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode 
+                <b> [sos-vh] </b> ou em homologação 
+                <b> [homo-sos-vh] </b>
+            </p>
+            <div class="pareado">
+                <label for="sos-vh" class="btn_sisten">
+                    <span class="dashicons dashicons-upload"></span>
+                    PRODUÇÃO                   
+                </label>
+                <label for="homo-sos-vh" class="btn_sisten btn_sisten_omo">
+                    <span class="dashicons dashicons-upload"></span>
+                    HOMOLOGAÇÃO
+                </label>
+            </div>
+        </div>
+
+        <div class="card_box">
+            <strong>BRAZIL OPPORTUNITIES FIM</strong>
+            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p>
+                para usar adicione o shortcode 
+                <b> [sos-brasil] </b> ou em homologação 
+                <b> [homo-sos-brasil] </b>
+            </p>
+            <div class="pareado">
+                <label for="sos-brasil" class="btn_sisten">
+                    <span class="dashicons dashicons-upload"></span>
+                    PRODUÇÃO                   
+                </label>
+                <label for="homo-sos-brasil" class="btn_sisten btn_sisten_omo">
+                    <span class="dashicons dashicons-upload"></span>
+                    HOMOLOGAÇÃO
+                </label>
+            </div>
+        </div>
+
     </div>
 
-    <input type="file" name="quotas-4" id="quotas-4"  style="display:none"/>
-    <input type="file" name="quotas-3" id="quotas-3"  style="display:none"/>
-    <input type="file" name="quotas-2" id="quotas-2"  style="display:none"/>
-    <input type="file" name="quotas" id="quotas"  style="display:none"/>
-    <input type="file" name="fim" id="fim"  style="display:none"/>
-    <input type="file" name="fia" id="fia"  style="display:none"/>
-    <input type="file" name="ls" id="ls"  style="display:none"/>
-    <input type="file" name="vh" id="vh"  style="display:none"/>
+    <form action="" method="post" enctype="multipart/form-data">
 
-    <br>
-    <input type="submit" class="button button-primary" value="Salvar">
+        <label for="sos-save" class="btn_sisten btn_sisten_save">
+            <span class="dashicons dashicons-yes-alt"></span>
+            SALVAR
+        </label>
 
-  </form>
+        <input type="submit" id="sos-save" name="sos-save"  value="ok" hidden>
+        
+        <input type="file" name="sos-tabela" id="sos-tabela" hidden>
+        <input type="file" name="homo-sos-tabela" id="homo-sos-tabela" hidden>
+
+        <input type="file" name="baixar-fia" id="baixar-fia" hidden>
+        <input type="file" name="baixar-multi" id="baixar-multi" hidden>
+        <input type="file" name="baixar-hedge" id="baixar-hedge" hidden>
+        <input type="file" name="baixar-brasil" id="baixar-brasil" hidden>
+
+        <input type="file" name="sos-fia" id="sos-fia" hidden>
+        <input type="file" name="homo-sos-fia" id="homo-sos-fia" hidden>
+
+        <input type="file" name="sos-vh" id="sos-vh" hidden>
+        <input type="file" name="homo-sos-vh" id="homo-sos-vh" hidden>
+
+        <input type="file" name="sos-brasil" id="sos-brasil" hidden>
+        <input type="file" name="homo-sos-brasil" id="homo-sos-brasil" hidden>
+
+        <input type="file" name="sos-ls" id="sos-ls" hidden>
+        <input type="file" name="homo-sos-ls" id="homo-sos-ls" hidden>
+
+    </form>
 </div>
