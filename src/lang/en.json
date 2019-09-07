@@ -1,0 +1,120 @@
+[
+    
+    {
+        "base": "Cotas e indexadores",
+        "translate": "Quotas and indexers"
+    },
+    {
+        "base": "Data",
+        "translate": "Date"
+    },
+    {
+        "base": "Multimercado",
+        "translate": "Macro Strategy"
+    },
+    {
+        "base": "Cota",
+        "translate": "Quota"
+    },
+    {
+        "base": "Dia",
+        "translate": "Day"
+    },
+    {
+        "base": "Mês",
+        "translate": "Month"
+    },
+    {
+        "base": "Ano",
+        "translate": "YTD"
+    },
+    {
+        "base": "12 Meses",
+        "translate": "12 Months"
+    },
+    {
+        "base": "24 Meses",
+        "translate": "24 Months"
+    },
+    {
+        "base": "36 Meses",
+        "translate": "36 Months"
+    },
+    {
+        "base": "Início",
+        "translate": "SINCE INCEPTION"
+    },
+    {
+        "base": "PL (R$)",
+        "translate": "NAV ($)"
+    },
+    {
+        "base": "PL 12M (R$)",
+        "translate": "NAV 12M ($)"
+    },
+    {
+        "base": "Renda Variável",
+        "translate": "Equities Strategy"
+    },
+    {
+        "base": "Indexadores",
+        "translate": "Indexers"
+    },
+    {
+        "base": "PL TOTAL (R$)",
+        "translate": "NAV TOTAL ($)"
+    },
+    {
+        "base": "Jan",
+        "translate" : "Jan" 
+    },
+    {
+        "base": "Fev",
+        "translate" : "Feb" 
+    },
+    {
+        "base": "Mar",
+        "translate" : "Mar" 
+    },
+    {
+        "base": "Abr",
+        "translate" : "Apr" 
+    },
+    {
+        "base": "Maio",
+        "translate" : "May" 
+    },
+    {
+        "base": "Jun",
+        "translate" : "June" 
+    },
+    {
+        "base": "jul",
+        "translate" : "July" 
+    },
+    {
+        "base": "Ago",
+        "translate" : "Aug" 
+    },
+    {
+        "base": "Set",
+        "translate" : "Sept" 
+    },
+    {
+        "base": "Out",
+        "translate" : "Oct" 
+    },
+    {
+        "base": "Nov",
+        "translate" : "Nov" 
+    },
+    {
+        "base": "Dez",
+        "translate" : "Dec" 
+    },
+    {
+        "base": "",
+        "translate": ""
+    }
+]
+

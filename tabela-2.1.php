@@ -22,6 +22,7 @@
       return '';
     }
   }
+  
   function TRS( $ARR )
   {
     $col = "";
@@ -31,6 +32,7 @@
     }
     return "<tr> \r\n {$col} </tr> \r\n";
   }
+
   function Formata ( $ARR )
   {
     $ARR[2]  =  Porcentagem( $ARR[2] );
