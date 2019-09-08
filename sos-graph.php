@@ -1,16 +1,13 @@
 <?php defined( 'ABSPATH' ) or die( 'area restrita' );
 
     /*
-    Plugin Name: SOS GRAPH
-    Plugin URI: http:/solucaosites.com.br/
-    Description: Plugin para upload de csv, para geração de graficos
-    Author: Bruno Vieira
-    Version: 1.1
-    Author URI: http:/solucaosites.com.br/
+        Plugin Name: SOS GRAPH
+        Plugin URI: http:/solucaosites.com.br/
+        Description: Plugin para upload de csv, para geração de graficos
+        Author: Bruno Vieira
+        Version: 1.2
+        Author URI: http:/solucaosites.com.br/
     */
-
-    // doc
-    // icones https://developer.wordpress.org/resource/dashicons/#chart-bar
 
     require __DIR__ . "/core/bootstrap.php";
 

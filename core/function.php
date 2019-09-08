@@ -2,7 +2,7 @@
 
     function aredondar( $numero )
     {
-        $numb      = '0' == $numb ? '' : $numb;
+        $numero    = '0' == $numero ? '' : $numero;
         $isND      = 'N/D' == $numero;
         $isWhite   = empty( $numero );
         if ( $isWhite or $isND ) return $numero;
@@ -18,7 +18,7 @@
 
     function cota( $numero )
     {
-        $numb      = '0' == $numb ? '' : $numb;
+        $numero    = '0' == $numero ? '' : $numero;
         $isND      = 'N/D' == $numero;
         $isWhite   = empty( $numero );
         if ( $isWhite or $isND ) return $numero;
@@ -47,6 +47,7 @@
     function importDevFromat( $string )
     {
         $arr = explode( ";", $string );
+        $arr = array_filter( $arr, function( $el ) { return $el == 0 ? '' : $el; } );
         return [
             "cota"    => cota( $arr[1] ),
             "dia"     => aredondar( $arr[2] ),
@@ -77,7 +78,6 @@
 
     function importDev( $csv ) {
         $arr  = explode( "\n", $csv );
-
         $data = substr( $arr[2], 12, 5 );
         $data = str_replace( '/', '-', $data );
         $arr  = array_slice( $arr, 3, 14 );
@@ -106,10 +106,11 @@
 
     function getTabela( $nome ) 
     {
-        $name_file = __DIR__ . "/../banco/{$nome}.json";
-        if( file_exists( $name_file ) )
+        $dir_base  = __DIR__ . "/../../../uploads/graficos";
+        $file_name = $dir_base . "/{$nome}.json";
+        if( file_exists( $file_name ) )
         {
-            $json = file_get_contents( $name_file );
+            $json = file_get_contents( $file_name );
             $json = json_decode( $json );
             return $json;
         }
@@ -132,7 +133,7 @@
         if ( ! empty ( $_FILES[$name]['tmp_name'] ) )
         {
             copy( $_FILES[$name]['tmp_name'], $file_name );
-            setUpdate( $nome );
+            setUpdate( $name );
         }    
     }
 
@@ -143,9 +144,9 @@
         if ( ! empty ( $_FILES[$name]['tmp_name'] ) )
         {
             $file = file_get_contents( $_FILES[$name]['tmp_name'] );
-            $json = importDev( $csv );
+            $json = importDev( $file );
             file_put_contents( $file_name, json_encode( $json ) );
-            setUpdate( $nome );
+            setUpdate( $name );
         }    
     }
 
@@ -156,13 +157,13 @@
         if ( ! empty ( $_FILES[$name]['tmp_name'] ) )
         {
             move_uploaded_file( $_FILES[$name]['tmp_name'], $file_name );
-            setUpdate( $nome );
+            setUpdate( $name );
         }    
     }
 
     function setUpdate( $nome ) 
     {
-        $dir_base  = "../../../../uploads/graficos";
+        $dir_base  = __DIR__ . "/../../../uploads/graficos";
         $json      = (object) []; 
         $file_name = $dir_base . "/update.json";
         if( file_exists( $file_name ) ) 
@@ -171,7 +172,7 @@
             $json = json_decode( $json );
         }
         $json->{$nome} = date('d/m/Y');
-        // file_put_contents( $file_name, json_encode( $file_name ) );
+        file_put_contents( $file_name, json_encode( $json ) );
         return true;
     }
 
@@ -188,12 +189,24 @@
     }
 
 
-    function grafico( $arquivo = 'csv/fia.csv', $array ) 
+    function grafico( $file_name = 'csv/fia.csv', $array ) 
     {
-        $acumuado = ( empty ( $array['acumulado'] ) ) ? "acumulado" : $array['acumulado'];
-        $cota     = ( empty ( $array['cota'] ) ) ? "cota" : $array['cota'];
-        $m = file ( $arquivo );
-        foreach ( $m as $indice =>  $linha ) :
+       
+        $acumuado = empty( $array['acumulado'] ) ? "acumulado" : $array['acumulado'];
+        $cota     = empty( $array['cota'] ) ? "cota" : $array['cota'];
+        $arquivo  = '';
+        $arr      = [];
+        $nome     = $array['name'];
+        $prefix   = end( explode( '-', $nome ) );
+        $prefix   = empty( $prefix ) ? 'prod' : $prefix;
+        if( file_exists( $file_name ) ) 
+        {
+            $arquivo = file_get_contents( $file_name );
+            $arr     = explode( "\n", $arquivo );
+        }else{
+            return "<b> error 503 </b>: Grafico <b>{$nome}</b> não implementado";
+        }
+        foreach ( $arr as $indice =>  $linha ) :
             if ( $indice ) :
             $linha   = str_replace ( ",", ".", $linha );
             $linhas  = explode ( ";", $linha );
@@ -205,12 +218,12 @@
             $linha2[]  = ( float )$linhas[2];
             endif;
         endforeach;
-        $lib      = plugin_dir_url('soso') . 'sos-graph/src/js/Chart.bundle.js';  
+        $lib      = plugin_dir_url('') . 'sos-graph/src/js/Chart.bundle.js';
         $linha0   = implode ( '", " ', $linha0 );
         $linha1   = implode ( ', ', $linha1 );
         $linha2   = implode ( ', ', $linha2 );
-        $template = file_get_contents ( __DIR__ . '/grafico.tpl.php' );
+        $template = file_get_contents ( __DIR__ . "/../grafico-{$prefix}.php" );
         $template = str_replace ( ["{{linha0}}","{{linha1}}","{{linha2}}","{{lib}}", "{{acumuado}}", "{{cota}}"], [$linha0, $linha1, $linha2, $lib, $acumuado, $cota], $template );
-        echo $template;
+        return $template;
     }
     

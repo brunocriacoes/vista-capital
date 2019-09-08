@@ -1,6 +1,5 @@
 <?php
 
-    require __DIR__ . "/core/bootstrap.php";
 
     echo "<style>";
     include __DIR__ . "/src/css/style-dev.css"; 

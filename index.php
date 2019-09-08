@@ -13,10 +13,6 @@
         Salvo com sucesso.
     </div>
 
-    <div class="card_box" >
-        <?php var_dump( $GLOBALS['error'] ) ?>
-    </div>
-
     <h1>Relatorios</h1>
 
     <p>
@@ -34,15 +30,15 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode 
-                <b> [sos-tabela] </b> ou em homologação 
-                <b> [homo-sos-tabela] </b>
+                <b> [sos-tabela name="tabela-prod"] </b> ou em homologação 
+                <b> [sos-tabela name="tabela-dev"] </b>
             </p>
             <div class="pareado">
-                <label for="sos-tabela" class="btn_sisten">
+                <label for="tabela-prod" class="btn_sisten">
                     <span class="dashicons dashicons-upload"></span>
                     PRODUÇÃO                   
                 </label>
-                <label for="homo-sos-tabela" class="btn_sisten btn_sisten_omo">
+                <label for="tabela-dev" class="btn_sisten btn_sisten_omo">
                     <span class="dashicons dashicons-upload"></span>
                     HOMOLOGAÇÃO
                 </label>
@@ -60,9 +56,9 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode <br>
-                <b> [baixar-fia] </b>
+                <b> [pdf name="fia"] </b>
             </p>
-            <label for="baixar-fia" class="btn_sisten">
+            <label for="pdf-fia" class="btn_sisten">
                 <span class="dashicons dashicons-upload"></span>
                 UPLOAD
             </label>
@@ -73,9 +69,9 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode <br>
-                <b> [baixar-multi] </b>
+                <b> [pdf name="multi"] </b>
             </p>
-            <label for="baixar-multi" class="btn_sisten">
+            <label for="pdf-multi" class="btn_sisten">
                 <span class="dashicons dashicons-upload"></span>
                 UPLOAD
             </label>
@@ -86,9 +82,9 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode <br>
-                <b> [baixar-hedge] </b>
+                <b> [pdf name="hedge"] </b>
             </p>
-            <label for="baixar-hedge" class="btn_sisten">
+            <label for="pdf-hedge" class="btn_sisten">
                 <span class="dashicons dashicons-upload"></span>
                 UPLOAD
             </label>
@@ -99,9 +95,9 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode <br>
-                <b> [baixar-brasil] </b>
+                <b> [pdf name="brasil"] </b>
             </p>
-            <label for="baixar-brasil" class="btn_sisten">
+            <label for="pdf-brasil" class="btn_sisten">
                 <span class="dashicons dashicons-upload"></span>
                 UPLOAD
             </label>
@@ -115,18 +111,18 @@
 
         <div class="card_box">
             <strong>VISTA FIA</strong>
-            <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
+            <p> Última atualização <b><?= dateUpdate('sos-fia') ?></b> </p>
             <p>
                 para usar adicione o shortcode 
-                <b> [sos-fia] </b> ou em homologação 
-                <b> [homo-sos-fia] </b>
+                <b> [graph name="fia-prod"] </b> ou em homologação 
+                <b> [graph name="fia-dev"] </b>
             </p>
             <div class="pareado">
-                <label for="sos-fia" class="btn_sisten">
+                <label for="graf-fia-prod" class="btn_sisten">
                     <span class="dashicons dashicons-upload"></span>
                     PRODUÇÃO                   
                 </label>
-                <label for="homo-sos-fia" class="btn_sisten btn_sisten_omo">
+                <label for="graf-fia-dev" class="btn_sisten btn_sisten_omo">
                     <span class="dashicons dashicons-upload"></span>
                     HOMOLOGAÇÃO
                 </label>
@@ -138,15 +134,15 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode 
-                <b> [sos-ls] </b> ou em homologação 
-                <b> [homo-sos-ls] </b>
+                <b> [graph name="multi-prod"] </b> ou em homologação 
+                <b> [graph name="multi-dev"] </b>
             </p>
             <div class="pareado">
-                <label for="sos-ls" class="btn_sisten">
+                <label for="graf-multi-prod" class="btn_sisten">
                     <span class="dashicons dashicons-upload"></span>
                     PRODUÇÃO                   
                 </label>
-                <label for="homo-sos-ls" class="btn_sisten btn_sisten_omo">
+                <label for="graf-multi-dev" class="btn_sisten btn_sisten_omo">
                     <span class="dashicons dashicons-upload"></span>
                     HOMOLOGAÇÃO
                 </label>
@@ -158,15 +154,15 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode 
-                <b> [sos-vh] </b> ou em homologação 
-                <b> [homo-sos-vh] </b>
+                <b> [graph name="hedge-prod"] </b> ou em homologação 
+                <b> [graph name="hedge-dev"] </b>
             </p>
             <div class="pareado">
-                <label for="sos-vh" class="btn_sisten">
+                <label for="graf-hedge-prod" class="btn_sisten">
                     <span class="dashicons dashicons-upload"></span>
                     PRODUÇÃO                   
                 </label>
-                <label for="homo-sos-vh" class="btn_sisten btn_sisten_omo">
+                <label for="graf-hedge-dev" class="btn_sisten btn_sisten_omo">
                     <span class="dashicons dashicons-upload"></span>
                     HOMOLOGAÇÃO
                 </label>
@@ -178,15 +174,15 @@
             <p> Última atualização <b><?= dateUpdate('') ?></b> </p>
             <p>
                 para usar adicione o shortcode 
-                <b> [sos-brasil] </b> ou em homologação 
-                <b> [homo-sos-brasil] </b>
+                <b> [graph name="brasil-prod"] </b> ou em homologação 
+                <b> [graph name="brasil-dev"] </b>
             </p>
             <div class="pareado">
-                <label for="sos-brasil" class="btn_sisten">
+                <label for="graf-brasil-prod" class="btn_sisten">
                     <span class="dashicons dashicons-upload"></span>
                     PRODUÇÃO                   
                 </label>
-                <label for="homo-sos-brasil" class="btn_sisten btn_sisten_omo">
+                <label for="graf-brasil-dev" class="btn_sisten btn_sisten_omo">
                     <span class="dashicons dashicons-upload"></span>
                     HOMOLOGAÇÃO
                 </label>
@@ -204,25 +200,24 @@
 
         <input type="submit" id="sos-save" name="sos-save"  value="ok" hidden>
         
-        <input type="file" name="sos-tabela" id="sos-tabela" hidden>
-        <input type="file" name="homo-sos-tabela" id="homo-sos-tabela" hidden>
+        <input type="file" name="tabela-prod" id="tabela-prod" hidden>
+        <input type="file" name="tabela-dev" id="tabela-dev" hidden>
 
-        <input type="file" name="baixar-fia" id="baixar-fia" hidden>
-        <input type="file" name="baixar-multi" id="baixar-multi" hidden>
-        <input type="file" name="baixar-hedge" id="baixar-hedge" hidden>
-        <input type="file" name="baixar-brasil" id="baixar-brasil" hidden>
+        <input type="file" name="pdf-fia" id="pdf-fia" hidden>
+        <input type="file" name="pdf-multi" id="pdf-multi" hidden>
+        <input type="file" name="pdf-hedge" id="pdf-hedge" hidden>
+        <input type="file" name="pdf-brasil" id="pdf-brasil" hidden>
 
-        <input type="file" name="sos-fia" id="sos-fia" hidden>
-        <input type="file" name="homo-sos-fia" id="homo-sos-fia" hidden>
+        <input type="file" name="graf-fia-prod" id="graf-fia-prod" hidden>
+        <input type="file" name="graf-multi-prod" id="graf-multi-prod" hidden>
+        <input type="file" name="graf-hedge-prod" id="graf-hedge-prod" hidden>
+        <input type="file" name="graf-brasil-prod" id="graf-brasil-prod" hidden>
 
-        <input type="file" name="sos-vh" id="sos-vh" hidden>
-        <input type="file" name="homo-sos-vh" id="homo-sos-vh" hidden>
-
-        <input type="file" name="sos-brasil" id="sos-brasil" hidden>
-        <input type="file" name="homo-sos-brasil" id="homo-sos-brasil" hidden>
-
-        <input type="file" name="sos-ls" id="sos-ls" hidden>
-        <input type="file" name="homo-sos-ls" id="homo-sos-ls" hidden>
+        <input type="file" name="graf-fia-dev" id="graf-fia-dev" hidden>
+        <input type="file" name="graf-multi-dev" id="graf-multi-dev" hidden>
+        <input type="file" name="graf-hedge-dev" id="graf-hedge-dev" hidden>
+        <input type="file" name="graf-brasil-dev" id="graf-brasil-dev" hidden>
+        
 
     </form>
 </div>

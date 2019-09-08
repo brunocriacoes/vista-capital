@@ -1,3 +1,9 @@
+<?php
+
+    echo "<style>";
+    include __DIR__ . "/src/css/style-prod.css"; 
+    echo "</style>";
+?>
 <div>
 
     <span class="sos-title">

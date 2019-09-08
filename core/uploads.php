@@ -7,16 +7,22 @@
         mkdir( $dir_base, 0777, true );
     }
     
-    saveTabela( 'quotas' );
+    saveTabela( 'tabela-prod' );
+    saveTabela( 'tabela-dev' );
 
-    savePdf( 'fim' );
-    savePdf( 'sos-fia' );
-    savePdf( 'homo-sos-fia' );
-    savePdf( 'ls' );
-    savePdf( 'vh' );
+    savePdf( 'pdf-fia' );
+    savePdf( 'pdf-multi' );
+    savePdf( 'pdf-hedge' );
+    savePdf( 'pdf-brasil' );
 
-    saveGrafico( 'fim' );
-    saveGrafico( 'fia' );
-    saveGrafico( 'ls' );
-    saveGrafico( 'vh' );
+    saveGrafico( 'graf-fia-prod' );
+    saveGrafico( 'graf-multi-prod' );
+    saveGrafico( 'graf-hedge-prod' );
+    saveGrafico( 'graf-brasil-prod' );
+
+    saveGrafico( 'graf-fia-dev' );
+    saveGrafico( 'graf-multi-dev' );
+    saveGrafico( 'graf-hedge-dev' );
+    saveGrafico( 'graf-brasil-dev' );
+
     
