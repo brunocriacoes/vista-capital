@@ -2,10 +2,7 @@
 
     function aredondar( $numero )
     {
-        $numero    = '0' == $numero ? '' : $numero;
-        $isND      = 'N/D' == $numero;
-        $isWhite   = empty( $numero );
-        if ( $isWhite or $isND ) return $numero;
+        if( validFormato( $numero ) ) return $numero;
 
         $arr       = explode( '.', $numero );
         $inteiro   = $arr[0];
@@ -18,26 +15,34 @@
 
     function cota( $numero )
     {
-        $numero    = '0' == $numero ? '' : $numero;
-        $isND      = 'N/D' == $numero;
-        $isWhite   = empty( $numero );
-        if ( $isWhite or $isND ) return $numero;
+        if( validFormato( $numero ) ) return $numero;
 
         return str_replace( '.', ',', $numero );
     }
 
     function numbFormato( $numb ) 
     {
-        $numb      = '0' == $numb ? '' : $numb;
-        $isND      = 'N/D' == $numb;
-        $isWhite   = empty( $numb );
-        if ( $isWhite or $isND ) return $numb;
+
+        if( validFormato( $numb ) ) return $numb;
 
         $numb = round($numb);     
         $numb = number_format($numb,1,",",".");     
         $numb = explode(',', $numb);  
 
         return $numb[0]; 
+    }
+
+    function validFormato( $num )
+    {
+        $black = [
+            0,
+            '0',
+            '',
+            'N/D',
+            'n/d',
+        ];    
+
+        return in_array( $num, $black );
     }
 
     function importProducao( $csv ) {
@@ -47,7 +52,9 @@
     function importDevFromat( $string )
     {
         $arr = explode( ";", $string );
-        $arr = array_filter( $arr, function( $el ) { return $el == 0 ? '' : $el; } );
+        $arr =  array_filter( $arr, function( $el ) {
+            return $el == '0' ? '' : $el;
+        } );
         return [
             "cota"    => cota( $arr[1] ),
             "dia"     => aredondar( $arr[2] ),
