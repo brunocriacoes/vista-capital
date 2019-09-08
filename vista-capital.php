@@ -1,7 +1,7 @@
 <?php defined( 'ABSPATH' ) or die( 'area restrita' );
 
     /*
-        Plugin Name: SOS GRAPH
+        Plugin Name: SOS GRAPH -
         Plugin URI: http:/solucaosites.com.br/
         Description: Plugin para upload de csv, para geração de graficos
         Author: Bruno Vieira
@@ -17,7 +17,7 @@
         "Relatorios",
         "ADD CSV",
         "manage_options",
-        "sos-graph/index.php",
+        "vista-capital/index.php",
         "",
         "dashicons-chart-bar",
         7

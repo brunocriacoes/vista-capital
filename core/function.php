@@ -218,7 +218,7 @@
             $linha2[]  = ( float )$linhas[2];
             endif;
         endforeach;
-        $lib      = plugin_dir_url('') . 'sos-graph/src/js/Chart.bundle.js';
+        $lib      = plugin_dir_url('') . 'vista-capital/src/js/Chart.bundle.js';
         $linha0   = implode ( '", " ', $linha0 );
         $linha1   = implode ( ', ', $linha1 );
         $linha2   = implode ( ', ', $linha2 );
