@@ -52,9 +52,11 @@
     function importDevFromat( $string )
     {
         $arr = explode( ";", $string );
-        $arr =  array_filter( $arr, function( $el ) {
-            return $el == '0' ? '' : $el;
-        } );
+        $arr =  array_map( function( $el ) {
+            $el = $el == '0' ? '' : $el;
+            $el = substr( $el, 0, 1 ) == '-' ? '-' : $el;
+            return $el;
+        }, $arr );
         return [
             "cota"    => cota( $arr[1] ),
             "dia"     => aredondar( $arr[2] ),
@@ -225,6 +227,8 @@
             $linha2[]  = ( float )$linhas[2];
             endif;
         endforeach;
+        $linha1 = array_filter( $linha1, function( $el ) { return $el != 0; } );
+        $linha2 = array_filter( $linha2, function( $el ) { return $el != 0; } );
         $lib      = plugin_dir_url('') . 'vista-capital/src/js/Chart.bundle.js';
         $linha0   = implode ( '", " ', $linha0 );
         $linha1   = implode ( ', ', $linha1 );
