@@ -49,13 +49,19 @@
         
     }
 
+    function removeNegative( $arr ) 
+    {
+        return array_map( function( $el ) {
+            return substr( $el, 0, 1 ) == '-' ? '-' : $el;
+        }, $arr );
+    }
+
     function importDevFromat( $string )
     {
         $arr = explode( ";", $string );
         $arr =  array_map( function( $el ) {
-            $el = $el == '0' ? '' : $el;
-            $el = substr( $el, 0, 1 ) == '-' ? '-' : $el;
-            return $el;
+            
+            return $el == '0' ? '' : $el;
         }, $arr );
         return [
             "cota"    => cota( $arr[1] ),
@@ -94,12 +100,14 @@
         unset( $arr[9] );
         unset( $arr[10] );
         unset( $arr[11] );
+
+        $arr = array_values( $arr );
         
         $result = [];
         $result['multiestrategia']      = importDevFromat( $arr[0] );
-        $result['cdiMultiestrategia']   = importDevFromat( $arr[1] );
+        $result['cdiMultiestrategia']   = removeNegative( importDevFromat( $arr[1] ) );
         $result['hedge']                = importDevFromat( $arr[2] );
-        $result['cdiHedge']             = importDevFromat( $arr[3] );
+        $result['cdiHedge']             = removeNegative( importDevFromat( $arr[3] ) );
         $result['fia']                  = importDevFromat( $arr[4] );
         $result['opportunities']        = importDevFromat( $arr[6] );
         $result['longBiased']           = importDevFromat( $arr[8] );

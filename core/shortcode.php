@@ -33,38 +33,3 @@
     }
     // [graph name="" acumulado="" cota="" ]
     add_shortcode( 'graph', 'printGrafico' );
-    
-    
-    // retro compatibilidade    
-
-
-    function sos_multi( $atts ) 
-    {
-        $name      = $arg['name'] ?? 'ls';
-        return grafico( __DIR__ . "/../../../uploads/graficos/{$name}.csv", $arg );
-    }
-    function sos_fia( $atts ) 
-    {
-        $name      = $arg['name'] ?? 'fia';
-        return grafico( __DIR__ . "/../../../uploads/graficos/{$name}.csv", $arg );
-    }
-
-    function sos_ls( $atts ) 
-    {
-        $name      = $arg['name'] ?? 'ls';
-        return grafico( __DIR__ . "/../../../uploads/graficos/{$name}.csv", $arg );
-    }
-
-    function sos_vh( $atts ) 
-    {
-        $name      = $arg['name'] ?? 'vh';
-        return grafico( __DIR__ . "/../../../uploads/graficos/{$name}.csv", $arg );
-    }
-
-    add_shortcode( 'sos-multi', 'sos_multi' );
-    add_shortcode( 'sos-fia', 'sos_fia' );
-    add_shortcode( 'sos-ls', 'sos_ls' );
-    add_shortcode( 'sos-vh', 'sos_vh' );
-
-    add_shortcode( 'sos-table-4', 'printTabela' );
-    
