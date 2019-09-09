@@ -1,6 +1,5 @@
 <?php
 
-
     echo "<style>";
     include __DIR__ . "/src/css/style-dev.css"; 
     echo "</style>";

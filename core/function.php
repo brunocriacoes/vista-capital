@@ -73,7 +73,7 @@
     function somaTotal() 
     {
         $arr  = func_get_args();
-        $arr  = array_map( function( $n ) { return str_replace( '.', '', $n ); }, $arr );
+        $arr  = array_map( function( $n ) { return str_replace( ['.','N/D'], ['',0], $n ); }, $arr );
         $soma = 0;
         foreach( $arr as $n )
         {
@@ -92,7 +92,6 @@
         unset( $arr[9] );
         unset( $arr[10] );
         unset( $arr[11] );
-        $arr = array_values( $arr );
         
         $result = [];
         $result['multiestrategia']      = importDevFromat( $arr[0] );
@@ -100,11 +99,12 @@
         $result['hedge']                = importDevFromat( $arr[2] );
         $result['cdiHedge']             = importDevFromat( $arr[3] );
         $result['fia']                  = importDevFromat( $arr[4] );
+        $result['opportunities']        = importDevFromat( $arr[6] );
         $result['longBiased']           = importDevFromat( $arr[8] );
         $result['ibx']                  = importDevFromat( $arr[9] );
         $result['cdi']                  = importDevFromat( $arr[10] );
         $result['info']                 = [
-            "total" => somaTotal( $result['multiestrategia']['pl'], $result['hedge']['pl'], $result['fia']['pl'], $result['longBiased']['pl'] ),
+            "total" => somaTotal( $result['multiestrategia']['pl'], $result['hedge']['pl'], $result['fia']['pl'], $result['longBiased']['pl'], $result['opportunities']['pl'] ),
             "data" => $data
         ];
 

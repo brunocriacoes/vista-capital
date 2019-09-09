@@ -13,6 +13,13 @@
         Salvo com sucesso.
     </div>
 
+    <?php
+        if( ! empty( $GLOBALS['error'] ) ) 
+        {
+            var_dump( $GLOBALS['error'] );
+        }
+    ?>
+
     <h1>Relatorios</h1>
 
     <p>
