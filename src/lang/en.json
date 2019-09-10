@@ -53,6 +53,11 @@
         "translate": "NAV 12M ($)"
     },
     {
+        "base": "PL Estrategia (R$)",
+        "translate": "PL strategy ($)"
+    },
+    
+    {
         "base": "Renda Variável",
         "translate": "Equities Strategy"
     },

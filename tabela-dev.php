@@ -37,7 +37,7 @@
                     <td> <?= _t( 'Início' ) ?>  </td>
                     <td> <?= _t( 'PL (R$)' ) ?>  </td>
                     <td> <?= _t( 'PL 12M (R$)' ) ?> </td>
-                    <td> <?= _t( 'PL Estrategia' ) ?>  </td>
+                    <td> <?= _t( 'PL Estrategia (R$)' ) ?>  </td>
                 </tr>
                 <tr>
                     <td><?= _t( 'Vista Multiestrategia FIM' ) ?></td>
@@ -65,9 +65,9 @@
                     <td> <?= _t( '24 Meses' ) ?> </td>
                     <td> <?= _t( '36 Meses' ) ?> </td>
                     <td> <?= _t( 'Início' ) ?></td>
-                    <td> <?= _t( 'PL (R$' ) ?> </td>
+                    <td> <?= _t( 'PL (R$)' ) ?> </td>
                     <td> <?= _t( 'PL 12M (R$)' ) ?> </td>
-                    <td> <?= _t( 'PL Estrategia' ) ?> </td>
+                    <td> <?= _t( 'PL Estrategia(R$)' ) ?> </td>
                 </tr>
                 <tr>
                     <td><?= _t( 'Vista FIA' ) ?></td>
