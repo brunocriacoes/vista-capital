@@ -6,7 +6,14 @@
         $text      = $arg['text'] ?? 'BAIXAR';
         $class     = $arg['class'] ?? 'btn_baixar';
         $file_name = get_site_url() . "/wp-content/uploads/graficos/pdf-{$name}.pdf";
-        return "<a href=\"{$file_name}\" class=\"{$class}\" download> {$text} </a>";
+        return "<a style=\"
+        color: rgb(255, 255, 255);
+        border-color: rgb(125, 106, 69);
+        border-radius: 3px;
+        background-color: rgb(125, 106, 69);
+        \" href=\"{$file_name}\" class=\"qbutton.small qbutton.center qbutton botoes {$class}\" download> {$text}
+        <i class=\"qode_icon_font_awesome fa fa-download qode_button_icon_element\"></i>
+        </a>";
     }
     // [sos-pdf name="" text="" class=""]
     add_shortcode( 'pdf', 'linkBaixar' );

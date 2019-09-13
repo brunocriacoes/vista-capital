@@ -67,7 +67,7 @@
                     <td> <?= _t( 'Início' ) ?></td>
                     <td> <?= _t( 'PL (R$)' ) ?> </td>
                     <td> <?= _t( 'PL 12M (R$)' ) ?> </td>
-                    <td> <?= _t( 'PL Estrategia(R$)' ) ?> </td>
+                    <td> <?= _t( 'PL Estrategia (R$)' ) ?> </td>
                 </tr>
                 <tr>
                     <td><?= _t( 'Vista FIA' ) ?></td>
