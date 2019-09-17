@@ -2,15 +2,10 @@
 
     function aredondar( $numero )
     {
-        if( validFormato( $numero ) ) return $numero;
-
-        $arr       = explode( '.', $numero );
-        $inteiro   = $arr[0];
-        $aredondar = substr( $arr[1], 0, 2 ) .  "." . substr( $arr[1], 2, 1 ) ;
-        $aredondar = round( $aredondar );
-
-        return "{$inteiro},{$aredondar}%";
-
+        if( validFormato( $numero ) ) return $numero;       
+        $aredondar = round( $numero, 2 );
+        $aredondar = str_replace( '.', ',', $aredondar );
+        return "{$aredondar}%";
     }
 
     function cota( $numero )
