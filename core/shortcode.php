@@ -11,7 +11,7 @@
         border-color: rgb(125, 106, 69);
         border-radius: 3px;
         background-color: rgb(125, 106, 69);
-        \" href=\"{$file_name}\" class=\"qbutton.small qbutton.center qbutton botoes {$class}\" download> {$text}
+        \" href=\"{$file_name}\" class=\"qbutton.small qbutton.center qbutton botoes {$class}\" > {$text}
         <i class=\"qode_icon_font_awesome fa fa-download qode_button_icon_element\"></i>
         </a>";
     }
